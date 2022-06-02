@@ -8,24 +8,22 @@ namespace TexPacker
     {
         public Texture2D texture;
 
-        private Dictionary<TextureChannel, TextureChannelInput> _inputs = new Dictionary<TextureChannel, TextureChannelInput>();
-
-        public TextureInput()
+        private Dictionary<TextureChannel, TextureChannelInput> channelInputs = new Dictionary<TextureChannel, TextureChannelInput>
         {
-            _inputs[TextureChannel.ChannelRed]      = new TextureChannelInput();
-            _inputs[TextureChannel.ChannelGreen]    = new TextureChannelInput();
-            _inputs[TextureChannel.ChannelBlue]     = new TextureChannelInput();
-            _inputs[TextureChannel.ChannelAlpha]    = new TextureChannelInput();
-        }
+            [TextureChannel.Red]    = new TextureChannelInput(TextureChannel.Red),
+            [TextureChannel.Green]  = new TextureChannelInput(TextureChannel.Green),
+            [TextureChannel.Blue]   = new TextureChannelInput(TextureChannel.Blue),
+            [TextureChannel.Alpha]  = new TextureChannelInput(TextureChannel.Alpha)
+        };
 
         public TextureChannelInput GetChannelInput(TextureChannel channel)
         {
-            return _inputs[channel];
+            return channelInputs[channel];
         }
 
         public void SetChannelInput(TextureChannel channel, TextureChannelInput channelInput)
         {
-            _inputs[channel] = channelInput;
+            channelInputs[channel] = channelInput;
         }
     }
 }
